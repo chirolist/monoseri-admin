@@ -16,6 +16,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
+                <div class="card-header"><strong>検索フォーム</strong></div>
                 <div class="card-body">
                   <form class="form-horizontal" action="{{ url('/product') }}" method="get">
                     @csrf
@@ -95,7 +96,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
-                <div class="card-header"> Total <strong>{{ $products->total() }}</strong> products</div>
+                <div class="card-header">総件数：<strong>{{ $products->total() }}</strong></div>
                 <div class="card-body">
                   <table class="table table-responsive-sm table-hover table-outline mb-3">
                     <thead class="thead-light">
@@ -105,10 +106,10 @@
                             <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-camera"></use>
                           </svg>
                         </th>
-                        <th class="text-center">商品コード</th>
+                        <th class="text-center text-nowrap">商品コード</th>
                         <th>商品名</th>
-                        <th class="text-right">価格</th>
-                        <th class="text-right">在庫</th>
+                        <th class="text-right text-nowrap">価格</th>
+                        <th class="text-right text-nowrap">在庫</th>
                         <th class="text-center"></th>
                         <th class="text-center"></th>
                         <th class="text-center"></th>
@@ -121,19 +122,19 @@
                           <div class="c-avatar"><img class="c-avatar-img" src="{{ count($product->images) > 0 ? $product->images->first()->url : 'https://www.labaleine.fr/sites/default/files/image-not-found.jpg' }}" alt="test"></div>
                         </td>
                         <td class="text-center">{{ $product->code }}</td>
-                        <td>
+                        <td class="text-nowrap">
                           <div>{{ \Str::limit($product->name, 50, $end = '...') }}</div>
                           <div class="small text-muted">{{ \Str::limit($product->description, 30, $end = '...') }}</div>
                         </td>
                         <td class="text-right">&yen;{{ number_format($product->price) }}</td>
                         <td class="text-right">{{ $product->stock }}</td>
-                        <td>
+                        <td class="text-nowrap">
                           <button class="btn btn-sm btn-square btn-block btn-dark" type="button" onclick="location.href='{{ url('/product', [$product->id, 'edit']) }}'">編集</button>
                         </td>
-                        <td>
+                        <td class="text-nowrap">
                           <button class="btn btn-sm btn-square btn-block btn-info" type="button" onclick="location.href='{{ url('/product', [$product->id]) }}'">情報</button>
                         </td>
-                        <td>
+                        <td class="text-nowrap">
                           <button class="btn btn-sm btn-square btn-block btn-danger" type="button" data-toggle="modal" data-target="#dangerModal" onclick="setDelProductID({{ $product->id }})">削除</button>
                         </td>
                       </tr>
@@ -148,8 +149,8 @@
           </div>
           <!-- /.row-->
           <div class="row align-items-center mb-3">
-            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-primary" type="button" onclick="location.href='{{ url('/product/import/create') }}'">csv import</button></div>
-            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-secondary" type="button" onclick="location.href='{{ url('/product/create') }}'">create</button></div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-primary" type="button" onclick="location.href='{{ url('/product/import/create') }}'">CSV一括登録</button></div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-primary" type="button" onclick="location.href='{{ url('/product/create') }}'">新規作成</button></div>
           </div>
         </div>
       </div>

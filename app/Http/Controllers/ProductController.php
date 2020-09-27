@@ -56,6 +56,9 @@ class ProductController extends Controller
 
         $products = $query->paginate(10);
 
+        // 編集画面から戻るときに使う
+        session()->put('page_list_url', $request->fullUrl());
+
         return view('product.index', compact('products'));
     }
 
@@ -66,7 +69,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        // 検索一覧への戻りurl
+        $page_list_url = session()->get('page_list_url') ?? url('/product');
+
+        return view('product.create', compact('page_list_url'));
     }
 
     /**
@@ -146,7 +152,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product'));
+        // 検索一覧への戻りurl
+        $page_list_url = session()->get('page_list_url') ?? url('/product');
+
+        return view('product.edit', compact('product', 'page_list_url'));
     }
 
     /**
@@ -221,7 +230,21 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+        try {
+            \DB::beginTransaction();
+
+            $product->delete();
+
+            // TODO 画像ファイルも消す
+            $product->images->each(function ($image) {
+                $image->delete();
+            });
+
+            \DB::commit();
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            throw $e;
+        }
 
         \Session::flash('flash_message', '削除が完了しました');
 
