@@ -21,3 +21,12 @@ Route::resource('bookmark/import', 'BookMarkImportController')->only([ 'create',
 Route::resource('playhistory', 'PlayHistoryController');
 Route::resource('product', 'ProductController');
 Route::resource('product/import', 'ProductImportController')->only([ 'create', 'store' ]);
+Route::get('product_csv/download', 'ProductCsvController@download');
+Route::resource('customer', 'CustomerController');
+Route::get('customer_csv/download', 'CustomerCsvController@download');
+Route::resource('user', 'UserController');
+Route::get('user_csv/download', 'UserCsvController@download');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

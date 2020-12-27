@@ -1,0 +1,35 @@
+version: "3.0"
+services:
+  lb:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    links:
+      - web
+  web:
+    build: ./
+    links:
+      - db
+    volumes:
+      - ./:/var/www
+    external_links:
+      - lb
+  worker:
+    build: ./
+    links:
+      - db
+    working_dir: /var/www
+    command: php artisan queue:work --daemon --tries=3 --sleep=10
+    volumes:
+      - ./:/var/www
+  db:
+    image: mariadb
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev

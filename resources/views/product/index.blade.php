@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group row">
                       <label class="col-md-2 col-form-label" for="description">商品説明</label>
-                      <div class="col-md-10">
+                      <div class="col-md-6">
                         <input class="form-control @error('description') is-invalid @enderror" id="description" type="text" name="description" value="{{ \Request::input('description') ?? old('description') }}">
                         @error('description')
                           <div class="invalid-feedback">{{ $message }}</div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group row">
                       <label class="col-md-2 col-form-label" for="memo">メモ</label>
-                      <div class="col-md-10">
+                      <div class="col-md-6">
                         <input class="form-control @error('memo') is-invalid @enderror" id="memo" type="text" name="memo" value="{{ \Request::input('memo') ?? old('memo') }}">
                         @error('memo')
                           <div class="invalid-feedback">{{ $message }}</div>
@@ -58,13 +58,13 @@
                     </div>
                     <div class="form-group row">
                       <label class="col-md-2 col-form-label">価格</label>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input class="form-control @error('price_from') is-invalid @enderror" type="number" name="price_from" value="{{ \Request::input('price_from') ?? old('price_from') }}">
                         @error('price_from')
                           <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>~
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input class="form-control @error('price_to') is-invalid @enderror" type="number" name="price_to" value="{{ \Request::input('price_to') ?? old('price_to') }}">
                         @error('price_to')
                           <div class="invalid-feedback">{{ $message }}</div>
@@ -73,20 +73,20 @@
                     </div>
                     <div class="form-group row">
                       <label class="col-md-2 col-form-label">在庫</label>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input class="form-control @error('stock_from') is-invalid @enderror" type="number" name="stock_from" value="{{ \Request::input('stock_from') ?? old('stock_from') }}">
                         @error('stock_from')
                           <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>~
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <input class="form-control @error('stock_to') is-invalid @enderror" type="number" name="stock_to" value="{{ \Request::input('stock_to') ?? old('stock_to') }}">
                         @error('stock_to')
                           <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>
                     </div>
-                    <button class="btn btn-primary float-md-right" type="submit">商品を探す</button>
+                    <button class="btn btn-info float-md-right" type="submit">商品を探す</button>
                   </form>
                 </div>
               </div>
@@ -96,7 +96,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="card">
-                <div class="card-header">総件数：<strong>{{ $products->total() }}</strong></div>
+                <div class="card-header">総件数：<strong>{{ $products->total() }}</strong><button class="btn btn-warning float-md-right" type="button" onclick="download_csv()">CSVダウンロード</button></div>
                 <div class="card-body">
                   <table class="table table-responsive-sm table-hover table-outline mb-3">
                     <thead class="thead-light">
@@ -141,7 +141,7 @@
                       @endforeach
                     </tbody>
                   </table>
-                  {{ $products->appends(Request::query())->onEachSide(2)->links('pagination::bootstrap-4') }}
+                  {{ $products->appends(Request::Query())->onEachSide(2)->links() }}
                 </div>
               </div>
             </div>
@@ -149,8 +149,8 @@
           </div>
           <!-- /.row-->
           <div class="row align-items-center mb-3">
-            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-primary" type="button" onclick="location.href='{{ url('/product/import/create') }}'">CSV一括登録</button></div>
-            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-primary" type="button" onclick="location.href='{{ url('/product/create') }}'">新規作成</button></div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-info" type="button" onclick="location.href='{{ url('/product/import/create') }}'">CSV一括登録</button></div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0"><button class="btn btn-square btn-block btn-info" type="button" onclick="location.href='{{ url('/product/create') }}'">新規作成</button></div>
           </div>
         </div>
       </div>
@@ -195,6 +195,10 @@
   function deleteProduct() {
       document.formDelete.submit();
   }
+  function download_csv() {
+      var param = location.search
+      window.location.href = '/product_csv/download' + param;
+  }
 </script>
 
 <!-- CoreUI and necessary plugins-->
@@ -206,5 +210,4 @@
 <!-- <script src="/coreui/vendors/@coreui/chartjs/js/coreui-chartjs.bundle.js"></script>-->
 <!-- <script src="/coreui/vendors/@coreui/utils/js/coreui-utils.js"></script>-->
 <!-- <script src="/js/main.js"></script>-->
-<script src=" {{ mix('js/app.js') }} "></script>
 @endsection

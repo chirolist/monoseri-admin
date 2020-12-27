@@ -54,14 +54,7 @@
   </head>
   <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-      <div class="c-sidebar-brand d-lg-down-none">
-        <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-          <use xlink:href="/coreui/assets/brand/coreui.svg#full"></use>
-        </svg>
-        <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
-          <use xlink:href="/coreui/assets/brand/coreui.svg#signet"></use>
-        </svg>
-      </div>
+      <div class="c-sidebar-brand d-lg-down-none">KANRIGAMEN</div>
       <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('/') }}">
             <svg class="c-sidebar-nav-icon">
@@ -78,19 +71,35 @@
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('product') }}">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-gift"></use>
-            </svg> ゲーセンの景品</a></li>
+            </svg> 商品管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('customer') }}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+            </svg> 顧客管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('user') }}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+            </svg> ユーザー管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('company') }}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
+            </svg> 会社管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('order') }}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
+            </svg> 受注管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('offer') }}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
+            </svg> 予約管理</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('book') }}">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-book"></use>
-            </svg> 本</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('card') }}">
-            <svg class="c-sidebar-nav-icon">
-              <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-            </svg> 艦娘カード</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('kancolle') }}">
+            </svg> 書籍管理</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ url('setting') }}">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-library"></use>
-            </svg> 艦娘</a></li>
+            </svg> 設定</a></li>
       </ul>
       <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>

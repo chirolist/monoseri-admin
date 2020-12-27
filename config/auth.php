@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'api',
+        'passwords' => 'staffs',
     ],
 
     /*
@@ -42,9 +42,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'driver' => 'jwt',
+            'provider' => 'staffs',
+            //'hash' => false,
         ],
     ],
 
@@ -66,15 +66,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'staffs' => [
             'driver' => 'eloquent',
-            'model' => App\Model\User::class,
+            'model' => App\Model\Staff::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -93,9 +88,9 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+        'staffs' => [
+            'provider' => 'staffs',
+            'table' => 't_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

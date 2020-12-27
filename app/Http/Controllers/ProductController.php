@@ -117,7 +117,7 @@ class ProductController extends Controller
                     // DBに保存
                     ProductImage::create([
                         'product_id' => $product->id,
-                        'url'         => $url,
+                        'url'        => $url,
                     ]);
                 }
             }
@@ -206,7 +206,7 @@ class ProductController extends Controller
                     // DBに保存
                     ProductImage::create([
                         'product_id' => $product->id,
-                        'url'         => $url,
+                        'url'        => $url,
                     ]);
                 }
             }

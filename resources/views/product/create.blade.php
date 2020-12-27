@@ -24,7 +24,7 @@
         @endif
         <div class="fade-in">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="card">
                 <div class="card-header"><strong>商品登録</strong></div>
                 <div class="card-body">

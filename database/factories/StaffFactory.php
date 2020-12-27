@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\ProductImage;
+use App\Staff;
 use Faker\Generator as Faker;
 
-$factory->define(ProductImage::class, function (Faker $faker) {
+$factory->define(Staff::class, function (Faker $faker) {
     return [
         //
     ];
